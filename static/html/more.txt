@@ -1,0 +1,10 @@
+- Golang
+    https://golang.org/
+- WebAssembly
+    https://webassembly.org/
+- Vue.js
+    https://vuejs.org/
+- vue-clipboard2 (vue-clipboard.min.js)
+    https://github.com/Inndy/vue-clipboard2
+- Bootstrap-United
+    https://bootswatch.com/united/
