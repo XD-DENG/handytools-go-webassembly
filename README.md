@@ -9,6 +9,8 @@ The key steps include:
 - Copy the JavaScript support file `GOROOT/misc/wasm/wasm_exec.js` to your project, and load it properly in your HTML page
 (ensure the version of Go you use to build is consistent with the version of Go from whose `GOROOT` you copy from).
 
+A live demo can be found at [https://handytools.xd-deng.com](https://handytools.xd-deng.com/)
+
 ## Commands to Build and Run
 
 ```bash
