@@ -49,6 +49,20 @@ docker build -t xddeng/handytools-wasm .
 docker run -p 8000:8000 xddeng/handytools-wasm
 ```
 
+## Check in Browser Console
+
+Once the application is running, you can open the corresponding link in your browser
+(or directly visit the demo [https://handytools.xd-deng.com](https://handytools.xd-deng.com/))
+and open the console as well.
+
+The functions we create in `wasm/wasm_main.go` and expose in the `main()` function are accessible in the browser console,
+and we can invoke them in exactly the same way how we invoke JavaScript functions.
+
+<p align="center"> 
+    <img src="/static/images/handytools_console.png" alt="drawing" width="80%"/>
+</p>
+
+
 ## Reference
 
 - [1] https://github.com/golang/go/wiki/WebAssembly#getting-started
