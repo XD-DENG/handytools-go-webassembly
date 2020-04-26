@@ -52,6 +52,9 @@ func subGenerator(length int, pool []string, c chan string) {
 }
 
 func generatePassword(this js.Value, args []js.Value) interface{} {
+	if len(args) != 5 {
+		return "ERROR: number of arguments doesn't match"
+	}
 
 	var numberLen int
 	var lowerLetterLen int
@@ -129,6 +132,9 @@ func generatePassword(this js.Value, args []js.Value) interface{} {
 }
 
 func hashCalculation(this js.Value, args []js.Value) interface{} {
+	if len(args) != 2 {
+		return "ERROR: number of arguments doesn't match"
+	}
 
 	var plainText string
 	var algo string
@@ -158,6 +164,9 @@ func hashCalculation(this js.Value, args []js.Value) interface{} {
 }
 
 func humanReadableTimediff(this js.Value, args []js.Value) interface{} {
+	if len(args) != 1 {
+		return "ERROR: number of arguments doesn't match"
+	}
 
 	var timediff float32
 	timediff = float32(args[0].Float())
@@ -190,6 +199,10 @@ func humanReadableTimediff(this js.Value, args []js.Value) interface{} {
 }
 
 func unixTimeConverter(this js.Value, args []js.Value) interface{} {
+	if len(args) != 1 {
+		return "ERROR: number of arguments doesn't match"
+	}
+
 	var unixTime int64
 	unixTime = int64(args[0].Int())
 
@@ -198,11 +211,15 @@ func unixTimeConverter(this js.Value, args []js.Value) interface{} {
 	return fmt.Sprintf("%s", value)
 }
 
-type bodyTemplate struct {
+type requestStruct struct {
 	Value, Action, Type string
 }
 
 func encodeDecode(this js.Value, args []js.Value) interface{} {
+	if len(args) != 3 {
+		return "ERROR: number of arguments doesn't match"
+	}
+
 	var value, action, encodingType string
 	var result string
 
@@ -210,16 +227,16 @@ func encodeDecode(this js.Value, args []js.Value) interface{} {
 	action = args[1].String()
 	encodingType = args[2].String()
 
-	t := bodyTemplate{value, action, encodingType}
+	t := requestStruct{value, action, encodingType}
 
 	switch t {
-	case bodyTemplate{t.Value, "encode", "url"}:
+	case requestStruct{t.Value, "encode", "url"}:
 		result = url.PathEscape(t.Value)
-	case bodyTemplate{t.Value, "encode", "base64"}:
+	case requestStruct{t.Value, "encode", "base64"}:
 		result = base64.StdEncoding.EncodeToString([]byte(t.Value))
-	case bodyTemplate{t.Value, "decode", "url"}:
+	case requestStruct{t.Value, "decode", "url"}:
 		result, _ = url.PathUnescape(t.Value)
-	case bodyTemplate{t.Value, "decode", "base64"}:
+	case requestStruct{t.Value, "decode", "base64"}:
 		decoded, err := base64.StdEncoding.DecodeString(t.Value)
 		if err != nil {
 			result = "ERROR: " + err.Error()
