@@ -273,7 +273,14 @@
 
                     <hr>
 
-                    <p><b>Current Time:</b> <span style="color:darkorange">{{ currentunixtime }}</span></p>
+                    <p>
+                        <b>Current Time:</b> <span style="color:darkorange">{{ currentunixtime }}</span>
+                        <button type="button"
+                                v-clipboard:copy="currentunixtime"
+                                v-clipboard:success="copied"
+                                class="btn btn-success btn-sm">Copy Current Unix Time
+                        </button>
+                    </p>
                     <p><b>Unix Time:</b> <span style="color:darkorange">{{ unixtimeprocessed }}</span></p>
                     <p>
                         <b>Time:</b> <span :style="result_color" style="word-wrap: break-word">{{ result }}</span>
