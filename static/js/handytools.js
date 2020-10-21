@@ -1,3 +1,31 @@
+function funcCopied() {
+    alert('Copied.')
+}
+
+function produceEncodeDecodeClosure(resultTypeFlag, action, type) {
+    return function () {
+        this.seen = false;
+        this.result_type_flag = resultTypeFlag;
+        this.result = "... ...";
+
+        if (this.value_to_encode_or_decode == "") {
+            this.result = "";
+        } else {
+            let result = wasmEncodeDecode(
+                this.value_to_encode_or_decode,
+                action, type
+            );
+            if (result.startsWith("ERROR: ")) {
+                this.message_color = "color:red";
+            } else {
+                this.message_color = "color:green";
+                this.seen = true
+            }
+            this.result = result;
+        }
+    }
+}
+
 var generatePassword = new Vue({
     el: '#random-password',
     data: {
@@ -36,9 +64,7 @@ var generatePassword = new Vue({
             this.seen = false
         },
 
-        copied: function () {
-            alert('Copied.')
-        }
+        copied: funcCopied
     }
 })
 
@@ -84,9 +110,7 @@ var hashCalculation = new Vue({
             this.plain_value_for_hashed_value = ""
             this.seen = false
         },
-        copied: function () {
-            alert('Copied.')
-        }
+        copied: funcCopied
     }
 })
 
@@ -100,59 +124,15 @@ var urlEncodeDecode = new Vue({
         seen: false
     },
     methods: {
-        urlEncode: function () {
-
-            this.seen = false;
-            this.result_type_flag = "Encoding ";
-            this.result = "... ...";
-
-            if (this.value_to_encode_or_decode == "") {
-                this.result = "";
-            } else {
-                let result = wasmEncodeDecode(
-                    this.value_to_encode_or_decode,
-                    "encode", "url"
-                );
-                if (result.startsWith("ERROR: ")) {
-                    this.message_color = "color:red";
-                } else {
-                    this.message_color = "color:green";
-                    this.seen = true
-                }
-                this.result = result;
-            }
-        },
-        urlDecode: function () {
-
-            this.seen = false;
-            this.result_type_flag = "Decoding ";
-            this.result = "... ...";
-
-            if (this.value_to_encode_or_decode == "") {
-                this.result = "";
-            } else {
-                let result = wasmEncodeDecode(
-                    this.value_to_encode_or_decode,
-                    "decode", "url"
-                );
-                if (result.startsWith("ERROR: ")) {
-                    this.message_color = "color:red";
-                } else {
-                    this.message_color = "color:green";
-                    this.seen = true
-                }
-                this.result = result;
-            }
-        },
+        urlEncode: produceEncodeDecodeClosure("Encoding ", "encode", "url"),
+        urlDecode: produceEncodeDecodeClosure("Decoding ", "decode", "url"),
         clear: function () {
             this.value_to_encode_or_decode = "";
             this.result = "";
             this.result_type_flag = "";
             this.seen = false
         },
-        copied: function () {
-            alert('Copied.')
-        }
+        copied: funcCopied
     }
 })
 
@@ -166,59 +146,15 @@ var base64EncodeDecode = new Vue({
         seen: false
     },
     methods: {
-        base64Encode: function () {
-
-            this.seen = false;
-            this.result_type_flag = "Encoding "
-            this.result = "... ...";
-
-            if (this.value_to_encode_or_decode == "") {
-                this.result = "";
-            } else {
-                let result = wasmEncodeDecode(
-                    this.value_to_encode_or_decode,
-                    "encode", "base64"
-                );
-                if (result.startsWith("ERROR: ")) {
-                    this.message_color = "color:red";
-                } else {
-                    this.message_color = "color:green";
-                    this.seen = true
-                }
-                this.result = result;
-            }
-        },
-        base64Decode: function () {
-
-            this.seen = false;
-            this.result_type_flag = "Decoding ";
-            this.result = "... ...";
-
-            if (this.value_to_encode_or_decode == "") {
-                this.result = "";
-            } else {
-                let result = wasmEncodeDecode(
-                    this.value_to_encode_or_decode,
-                    "decode", "base64"
-                );
-                if (result.startsWith("ERROR: ")) {
-                    this.message_color = "color:red";
-                } else {
-                    this.message_color = "color:green";
-                    this.seen = true
-                }
-                this.result = result;
-            }
-        },
+        base64Encode: produceEncodeDecodeClosure("Encoding ", "encode", "base64"),
+        base64Decode: produceEncodeDecodeClosure("Decoding ", "decode", "base64"),
         clear: function () {
             this.value_to_encode_or_decode = "";
             this.result = "";
             this.result_type_flag = "";
             this.seen = false
         },
-        copied: function () {
-            alert('Copied.')
-        }
+        copied: funcCopied
     }
 })
 
@@ -264,9 +200,7 @@ var unixtime = new Vue({
             this.seen = false
         },
 
-        copied: function () {
-            alert('Copied.')
-        }
+        copied: funcCopied
     }
 })
 
