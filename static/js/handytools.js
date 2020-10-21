@@ -2,10 +2,10 @@ function funcCopied() {
     alert('Copied.')
 }
 
-function produceEncodeDecodeClosure(resultTypeFlag, action, type) {
+function produceEncodeDecodeClosure(action, type) {
     return function () {
         this.seen = false;
-        this.result_type_flag = resultTypeFlag;
+        this.result_type_flag = action == "encode" ? "Encoding " : "Decoding ";
         this.result = "... ...";
 
         if (this.value_to_encode_or_decode == "") {
@@ -124,8 +124,8 @@ var urlEncodeDecode = new Vue({
         seen: false
     },
     methods: {
-        urlEncode: produceEncodeDecodeClosure("Encoding ", "encode", "url"),
-        urlDecode: produceEncodeDecodeClosure("Decoding ", "decode", "url"),
+        urlEncode: produceEncodeDecodeClosure("encode", "url"),
+        urlDecode: produceEncodeDecodeClosure("decode", "url"),
         clear: function () {
             this.value_to_encode_or_decode = "";
             this.result = "";
@@ -146,8 +146,8 @@ var base64EncodeDecode = new Vue({
         seen: false
     },
     methods: {
-        base64Encode: produceEncodeDecodeClosure("Encoding ", "encode", "base64"),
-        base64Decode: produceEncodeDecodeClosure("Decoding ", "decode", "base64"),
+        base64Encode: produceEncodeDecodeClosure("encode", "base64"),
+        base64Decode: produceEncodeDecodeClosure("decode", "base64"),
         clear: function () {
             this.value_to_encode_or_decode = "";
             this.result = "";
