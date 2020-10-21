@@ -9,30 +9,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="/static/css/bootstrap.min.united.css">
-    <style>
-        #loading {
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0;
-            position: fixed;
-            display: block;
-            opacity: 0.7;
-            background-color: #fff;
-            z-index: 99;
-            text-align: center;
-        }
-
-        #loading-image {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            z-index: 100;
-        }
-    </style>
-
+    <link rel="stylesheet" href="/static/css/loading.css">
 </head>
-
 
 <body>
 
@@ -75,10 +53,7 @@
 </nav>
 
 <div class="container">
-    <br>
-    <br>
-    <br>
-    <br>
+    <br><br><br><br>
 
     <div class="well">
 
@@ -93,7 +68,6 @@
         </ul>
 
         <div class="tab-content">
-
             <div class="tab-pane fade active in" id="tab_hash_calculation">
                 <div id="hash-calculation">
                     <br>
@@ -117,10 +91,8 @@
                         </div>
                     </div>
 
-
                     <button v-on:click="calculateHash" class="btn btn-primary" disabled>Calculate</button>
                     <button v-on:click="clear" class="btn btn-primary" disabled>Clear</button>
-
                     <hr>
 
                     <p><b>Plain Value:</b> {{ quotation_placeholder }}<span
@@ -137,7 +109,6 @@
                                     class="btn btn-success btn-sm">Copy Result</button>
                         </span>
                     </p>
-
                 </div>
             </div>
 
@@ -151,11 +122,9 @@
                         </div>
                     </div>
 
-
                     <button v-on:click="urlEncode" class="btn btn-primary" disabled>Encode</button>
                     <button v-on:click="urlDecode" class="btn btn-primary" disabled>Decode</button>
                     <button v-on:click="clear" class="btn btn-primary" disabled>Clear</button>
-
                     <hr>
 
                     <p>
@@ -180,16 +149,13 @@
                         </div>
                     </div>
 
-
                     <button v-on:click="base64Encode" class="btn btn-primary" disabled>Encode</button>
                     <button v-on:click="base64Decode" class="btn btn-primary" disabled>Decode</button>
                     <button v-on:click="clear" class="btn btn-primary" disabled>Clear</button>
-
                     <hr>
 
                     <p>
-                        <b>{{ result_type_flag }}Result:</b> <span :style="message_color"
-                                                                   style="word-wrap: break-word">{{ result }}</span>
+                        <b>{{ result_type_flag }}Result:</b> <span :style="message_color" style="word-wrap: break-word">{{ result }}</span>
                         <span v-if="seen">
                             <button type="button"
                                     v-clipboard:copy="result"
@@ -202,7 +168,6 @@
 
             <div class="tab-pane fade" id="tab_generate_password">
                 <div id="random-password">
-
                     <br>
                     <div class="form-group row">
                         <label class="col-sm-2 col-form-label"># of Numbers</label>
@@ -241,7 +206,6 @@
 
                     <button v-on:click="showRandomPassword" class="btn btn-primary" disabled>Generate Password</button>
                     <button v-on:click="clear" class="btn btn-primary" disabled>Clear</button>
-
                     <hr>
 
                     <p>
@@ -258,19 +222,15 @@
 
             <div class="tab-pane fade" id="tab_unixtime">
                 <div id="unixtime">
-
                     <br>
-
                     <div class="form-group row">
                         <label class="col-sm-1 col-form-label">Unix Time</label>
                         <div class="col-sm-10">
                             <input v-model="unixtime">
                         </div>
                     </div>
-
                     <button v-on:click="convertToTime" class="btn btn-primary" disabled>Convert</button>
                     <button v-on:click="clear" class="btn btn-primary" disabled>Clear</button>
-
                     <hr>
 
                     <p>
@@ -293,7 +253,6 @@
                     </p>
                 </div>
             </div>
-
         </div>
     </div>
 
@@ -301,8 +260,7 @@
         <small>
             <b>
                 <span style="color:green">
-                    WebAssembly helps execute everything in your browser,
-                    so don't worry about what you enter or get here being leaked.
+                    WebAssembly helps execute everything in your browser, so don't worry about what you enter or get here being leaked.
                 </span>
             </b>
         </small>
@@ -311,10 +269,8 @@
     <p>
         <small>
             Developed by <a href="http://xd-deng.com" target="_blank">XD-DENG</a>
-            using <a href="https://golang.org/" target="_blank">Golang</a>
-            +
-            <a href="https://webassembly.org/" target="_blank">WebAssembly</a>
-            +
+            using <a href="https://golang.org/" target="_blank">Golang</a> +
+            <a href="https://webassembly.org/" target="_blank">WebAssembly</a> +
             <a href="https://vuejs.org/" target="_blank">Vue.js</a>
             (<a href="/static/html/more.txt" target="_blank">more</a>)
         </small>
@@ -324,7 +280,6 @@
             <a href="https://github.com/XD-DENG/handytools-go-webassembly">Source Code on GitHub</a>
         </small>
     </p>
-
 </div>
 
 <script src="/static/js/handytools.js"></script>
