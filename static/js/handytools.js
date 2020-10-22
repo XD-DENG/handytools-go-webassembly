@@ -181,9 +181,8 @@ var unixtime = new Vue({
                 this.unixtimeprocessed = parseInt(this.unixtime);
                 this.result = "... ...";
 
-                let result = wasmUnixTimeConverter(this.unixtimeprocessed) + " (" + wasmHumanReadableTimediff(parseInt(new Date().getTime() / 1000) - this.unixtimeprocessed) + ")";
                 this.result_color = "color:green";
-                this.result = result;
+                this.result = `${wasmUnixTimeConverter(this.unixtimeprocessed)} (${wasmHumanReadableTimediff(parseInt(Date.now() / 1000) - this.unixtimeprocessed)})`;
                 this.seen = true
             }
         },
