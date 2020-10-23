@@ -1,1 +1,5 @@
+static/js/bootstrap.min.js linguist-vendored
+static/js/vue-clipboard.min.js linguist-vendored
+static/css/bootstrap.min.united.css linguist-vendored
+
 *.html -linguist-detectable

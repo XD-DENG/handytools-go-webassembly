@@ -188,7 +188,7 @@ var unixtime = new Vue({
         },
 
         updateCurrentUnixTime: function () {
-            this.currentunixtime = parseInt(new Date().getTime() / 1000)
+            this.currentunixtime = parseInt(Date.now() / 1000)
         },
 
         clear: function () {
