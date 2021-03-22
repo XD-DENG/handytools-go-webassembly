@@ -22,7 +22,7 @@ A live demo can be found at [https://handytools.xd-deng.com](https://handytools.
     
     需要注意的是，你只能够编译main packages，否则编译出的object文件将不能在WebAssembly中执行[1]。
     
-- 将Go提供的JavaScript支持文件`GOROOT/misc/wasm/wasm_exec.js`复制到你的项目中，同时在你的HTML文件中该js文件（这里`GOROOT`的Go版本应与你之前用来编译wasm文件的Go版本保持一致）。
+- 将Go提供的JavaScript支持文件`GOROOT/misc/wasm/wasm_exec.js`复制到你的项目中，同时在你的HTML文件中载入该js文件（这里`GOROOT`的Go版本应与你之前用来编译wasm文件的Go版本保持一致）。
 
 Demo请移步[https://handytools.xd-deng.com](https://handytools.xd-deng.com/)
 

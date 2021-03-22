@@ -65,6 +65,7 @@
             </li>
             <li><a href="#tab_generate_password" data-toggle="tab" aria-expanded="false">Generate Password</a></li>
             <li><a href="#tab_unixtime" data-toggle="tab" aria-expanded="false">Unix Time Converter</a></li>
+            <li><a href="#tab_qrcode" data-toggle="tab" aria-expanded="false">Generate QR Code</a></li>
         </ul>
 
         <div class="tab-content">
@@ -253,6 +254,31 @@
                     </p>
                 </div>
             </div>
+
+            <div class="tab-pane fade" id="tab_qrcode">
+                <div id="qrcode">
+                    <br>
+                    <label class="col-form-label">Information to store in the QR Code (like URL):</label>
+                    <div class="form-group row">
+                        <div class="col-sm-8">
+                            <textarea class="form-control" v-model="infoToStore" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <button v-on:click="generateQRCode" class="btn btn-primary" disabled>Generate QR Code</button>
+                    <hr>
+
+                    <span v-if="seen">
+                        <p>
+                            <b>Information:</b> <span style="word-wrap: break-word; color:green">{{ currentInformation }}</span>
+                        </p>
+                        <p>
+                            <b>QR Code:</b><img :src="fullPngBase64QRCode" alt="qr_code" />
+                        </p>
+                    </span>
+
+                </div>
+            </div>
+
         </div>
     </div>
 

@@ -136,6 +136,23 @@ var urlEncodeDecode = new Vue({
     }
 })
 
+var generateQRCode = new Vue({
+    el: '#qrcode',
+    data: {
+        infoToStore: "",
+        fullPngBase64QRCode: "",
+        currentInformation: "",
+        seen: false
+    },
+    methods: {
+        generateQRCode: function() {
+            this.seen = true;
+            this.currentInformation = this.infoToStore
+            this.fullPngBase64QRCode = `data:image/png;base64, ${wasmGenerateQRCode(this.infoToStore)}`
+        }
+    }
+})
+
 var base64EncodeDecode = new Vue({
     el: '#base64-encode-decode',
     data: {

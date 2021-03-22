@@ -8,6 +8,7 @@ import (
 	"encoding/base64"
 	"encoding/hex"
 	"fmt"
+	qrcode "github.com/skip2/go-qrcode"
 	"hash"
 	"math/rand"
 	"net/url"
@@ -30,6 +31,7 @@ func main() {
 	global.Set("wasmHumanReadableTimediff", js.FuncOf(humanReadableTimediff))
 	global.Set("wasmUnixTimeConverter", js.FuncOf(unixTimeConverter))
 	global.Set("wasmEncodeDecode", js.FuncOf(encodeDecode))
+	global.Set("wasmGenerateQRCode", js.FuncOf(generateQRCode))
 	<-done
 }
 
@@ -248,4 +250,19 @@ func encodeDecode(this js.Value, args []js.Value) interface{} {
 	}
 
 	return result
+}
+
+func generateQRCode(this js.Value, args []js.Value) interface{} {
+	if len(args) != 1 {
+		return "ERROR: number of arguments doesn't match"
+	}
+
+	var png []byte
+	png, err := qrcode.Encode(args[0].String(), qrcode.Medium, 256)
+	if err != nil {
+		return "ERROR: error during generating QR code"
+	}
+
+	pngBase64 := base64.StdEncoding.EncodeToString(png)
+	return pngBase64
 }
